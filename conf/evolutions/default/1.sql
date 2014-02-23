@@ -1,15 +1,15 @@
 # --- !Ups
 CREATE TABLE users (
     id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(32) NOT NULL,
-    email VARCHAR(48) NOT NULL,
+    username VARCHAR(32) NOT NULL UNIQUE,
+    email VARCHAR(48) NOT NULL UNIQUE,
     password CHAR(128) NOT NULL,
     salt CHAR(32) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE usersessions (
     sessionid CHAR(32) NOT NULL PRIMARY KEY,
-    userid INT(10) NOT NULL
+    userid INT(10) NOT NULL UNIQUE
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
 # --- !Downs

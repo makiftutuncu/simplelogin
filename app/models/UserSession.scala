@@ -8,8 +8,8 @@ import play.api.Logger
 /**
  * A model for keeping a user session
  *
- * @param sessionId     Id generated
- * @param userId        Id of the user
+ * @param sessionId   Id generated for the session
+ * @param userId      Id of the user
  */
 case class UserSession(sessionId: String, userId: Int)
 
@@ -39,7 +39,7 @@ object UserSession {
         val sessionId = Generator.generateUUID
         val insertSql = SQL("insert into usersessions (sessionid, userid) values ({sessionid}, {userid})")
           .on('sessionid -> sessionId, 'userid -> userId)
-        val obtainSql = SQL("select sessionid, userid, creationtime from usersessions where sessionid={sessionid} limit 1")
+        val obtainSql = SQL("select sessionid, userid from usersessions where sessionid={sessionid} limit 1")
           .on('sessionid -> sessionId)
         DatabaseOperations.create[UserSession](insertSql, obtainSql, userSession, "UserSession")
       case _ =>
@@ -56,7 +56,7 @@ object UserSession {
    * @return  An optional UserSession if successful
    */
   def read(sessionId: String): Option[UserSession] = {
-    val readSql = SQL("select sessionid, userid, creationtime from usersessions where sessionid={sessionid} limit 1")
+    val readSql = SQL("select sessionid, userid from usersessions where sessionid={sessionid} limit 1")
       .on('sessionid -> sessionId)
     DatabaseOperations.read[UserSession](readSql, userSession, "UserSession")
   }
