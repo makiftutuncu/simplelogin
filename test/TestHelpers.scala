@@ -223,7 +223,7 @@ object TestHelpers {
           case _ => throw new Exception("Could not insert!")
         }
         DB.withConnection { implicit c =>
-          deleteUserSessionSQL(getInsertedUserSession.get.sessionId).executeUpdate()
+          deleteUserSessionSQL(sessionId).executeUpdate()
         }
         result
       }
@@ -251,7 +251,7 @@ object TestHelpers {
         }
         val result = AsResult(t)
         DB.withConnection { implicit c =>
-          deleteUserSessionSQL(getInsertedUserSession.get.sessionId).executeUpdate()
+          deleteUserSessionSQL(sessionId).executeUpdate()
         }
         result
       }

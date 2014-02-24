@@ -1,4 +1,4 @@
-@(title: String, styles: Html = Html(""), scripts: Html = Html(""))(content: Html)
+@(title: String, scripts: Html = Html(""))(content: Html)
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,13 +8,17 @@
     <link href='@routes.Assets.at("css/bootstrap.min.css")' rel="stylesheet">
     <!-- Bootstrap Theme CSS -->
     <link href='@routes.Assets.at("css/bootstrap-theme.min.css")' rel="stylesheet">
-    <!-- Extra CSS Styles -->
-    @styles
+    <!-- Main CSS -->
+    <link href='@routes.Assets.at("css/main.css")' rel="stylesheet">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href='@routes.Assets.at("img/favicon.png")'>
 </head>
 <body>
-    @content
+    <div class="centered-table">
+        <div class="centered">
+            @content
+        </div>
+    </div>
     <!-- jQuery JS -->
     <script src='@routes.Assets.at("js/jquery-2.1.0.min.js")'></script>
     <!-- Bootstrap JS -->

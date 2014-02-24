@@ -1,0 +1,7 @@
+@(user: User)
+@base("Simple Login Example") {
+<h1>Welcome @user.username (@user.email)!</h1>
+<form action='@routes.Logout.logout' method="post">
+    <button type="submit" class="btn btn-primary" style="text-align: center;">Logout</button>
+</form>
+}
